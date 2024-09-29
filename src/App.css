@@ -13,7 +13,6 @@ body {
   font-family: Arial, sans-serif;
 }
 
-
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -52,12 +51,20 @@ body {
 
 .content {
   padding: 16px;
-  margin-top: 50px;
+  margin-top: 30px;
+}
+
+button {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
 }
 
 .MuiButton-root {
-  font-size: 14px;
-  padding: 8px;
+  padding: 0 15px;
 }
 
 .MuiMenuItem-root {

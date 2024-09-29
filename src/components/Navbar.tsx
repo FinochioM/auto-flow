@@ -1,15 +1,11 @@
-// src/components/Navbar.tsx
-
 import * as React from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
-import Check from '@mui/icons-material/Check';
+import { appWindow } from '@tauri-apps/api/window'; // Importar la API de ventanas de Tauri
 
 export default function Navbar() {
   const [anchorElFile, setAnchorElFile] = React.useState<null | HTMLElement>(null);
@@ -26,181 +22,158 @@ export default function Navbar() {
 
   return (
     <Box sx={{ 
-    width: '100%', 
-    position: 'fixed', 
-    top: 0, 
-    left: 0, 
-    bgcolor: '#1e1e1e', 
-    color: 'white', 
-    display: 'flex', 
-    justifyContent: 'space-between', // Esto coloca los botones del menú a la izquierda y los de la ventana a la derecha
-    borderBottom: '1px solid #333',
-    zIndex: 1000,
-    padding: '5px 10px',
+      width: '100%', 
+      position: 'fixed', 
+      top: 0, 
+      left: 0, 
+      bgcolor: '#1e1e1e', 
+      color: 'white', 
+      display: 'flex', 
+      justifyContent: 'space-between', 
+      alignItems: 'center',
+      borderBottom: '1px solid #333',
+      zIndex: 1000,
+      padding: '5px 10px',
+      userSelect: 'none', 
     }}>
-      <Typography variant="h6" component="div" sx={{ marginRight: 'auto', fontSize: '14px', fontWeight: 'bold' }}>
-        Auto-Flow
-      </Typography>
-
-      {/* Menu File */}
-      <Button
-        onClick={(e) => handleMenuOpen(setAnchorElFile, e)}
-        sx={{
-          color: 'white',
-          textTransform: 'none',
-          padding: '0 15px',
-          borderRadius: 0,
-          fontSize: '14px',
-          '&:hover': {
-            bgcolor: '#333',
-          },
-          transition: 'background-color 0.2s ease',
-        }}
-      >
-        File
-      </Button>
-
-      <Menu
-        anchorEl={anchorElFile}
-        open={Boolean(anchorElFile)}
-        onClose={() => handleMenuClose(setAnchorElFile)}
-        MenuListProps={{
-          sx: {
-            bgcolor: '#252526',
-            color: 'white',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
-            padding: '5px 0',
-            '& .MuiMenuItem-root': {
-              fontSize: '14px',
-              padding: '4px 5px',
-              '&:hover': {
-                bgcolor: '#3e3e3e',
+      
+      {/* Contenedor que envuelve los menús y botones */}
+      <Box sx={{ display: 'flex', width: '100%' }}>
+        
+        {/* Menús de File, Edit, View a la izquierda */}
+        <Box sx={{ display: 'flex', '-webkit-app-region': 'no-drag' }}> {/* Área no arrastrable para los menús */}
+          <Button onClick={(e) => handleMenuOpen(setAnchorElFile, e)} sx={{ color: 'white', textTransform: 'none', fontSize: '14px' }}>
+            File
+          </Button>
+          <Menu
+            anchorEl={anchorElFile}
+            open={Boolean(anchorElFile)}
+            onClose={() => handleMenuClose(setAnchorElFile)}
+            MenuListProps={{
+              sx: {
+                bgcolor: '#252526',
+                color: 'white',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+                padding: '5px 0',
+                '& .MuiMenuItem-root': {
+                  fontSize: '14px',
+                  padding: '10px 20px',
+                  '&:hover': {
+                    bgcolor: '#3e3e3e',
+                  },
+                },
               },
-              transition: 'background-color 0.2s ease',
-              textAlign: 'left',
-            },
-          },
-        }}
-      >
-        <MenuItem>
-            <ListItemText sx={{ marginRight: 3 }}>New Project</ListItemText>
-        </MenuItem>
-        <Divider />
-        <MenuItem>
-            <ListItemText sx={{ marginRight: 3 }}>Open Project</ListItemText>
-        </MenuItem>
-        <Divider />
-        <MenuItem>
-            <ListItemText sx={{ marginRight: 3 }}>Save Project</ListItemText>
-        </MenuItem>
-      </Menu>
+            }}
+          >
+            <MenuItem>
+              <ListItemText sx={{ marginLeft: 0 }}>New Project</ListItemText>
+            </MenuItem>
+            <MenuItem>
+              <ListItemText sx={{ marginLeft: 0 }}>Open Project</ListItemText>
+            </MenuItem>
+            <MenuItem>
+              <ListItemText sx={{ marginLeft: 0 }}>Save Project</ListItemText>
+            </MenuItem>
+            <Divider />
+            <MenuItem>
+              <ListItemText sx={{ marginLeft: 0 }}>Settings</ListItemText>
+            </MenuItem>
+          </Menu>
 
-      {/* Menu Edit */}
-      <Button
-        onClick={(e) => handleMenuOpen(setAnchorElEdit, e)}
-        sx={{
-          color: 'white',
-          textTransform: 'none',
-          padding: '0 15px',
-          borderRadius: 0,
-          fontSize: '14px',
-          '&:hover': {
-            bgcolor: '#333',
-          },
-          transition: 'background-color 0.2s ease',
-        }}
-      >
-        Edit
-      </Button>
-
-      <Menu
-        anchorEl={anchorElEdit}
-        open={Boolean(anchorElEdit)}
-        onClose={() => handleMenuClose(setAnchorElEdit)}
-        MenuListProps={{
-          sx: {
-            bgcolor: '#252526',
-            color: 'white',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
-            padding: '5px 0',
-            '& .MuiMenuItem-root': {
-              fontSize: '14px',
-              padding: '10px 20px',
-              '&:hover': {
-                bgcolor: '#3e3e3e',
+          <Button onClick={(e) => handleMenuOpen(setAnchorElEdit, e)} sx={{ color: 'white', textTransform: 'none', fontSize: '14px' }}>
+            Edit
+          </Button>
+          <Menu
+            anchorEl={anchorElEdit}
+            open={Boolean(anchorElEdit)}
+            onClose={() => handleMenuClose(setAnchorElEdit)}
+            MenuListProps={{
+              sx: {
+                bgcolor: '#252526',
+                color: 'white',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+                padding: '5px 0',
+                '& .MuiMenuItem-root': {
+                  fontSize: '14px',
+                  padding: '10px 20px',
+                  '&:hover': {
+                    bgcolor: '#3e3e3e',
+                  },
+                },
               },
-              transition: 'background-color 0.2s ease',
-            },
-          },
-        }}
-      >
-        <MenuItem>
-          <ListItemText inset>Undo</ListItemText>
-        </MenuItem>
-        <MenuItem>
-          <ListItemText inset>Redo</ListItemText>
-        </MenuItem>
-        <MenuItem>
-          <ListItemText inset>Cut</ListItemText>
-        </MenuItem>
-        <MenuItem>
-          <ListItemText inset>Copy</ListItemText>
-        </MenuItem>
-        <MenuItem>
-          <ListItemText inset>Paste</ListItemText>
-        </MenuItem>
-      </Menu>
+            }}
+          >
+            <MenuItem>
+              <ListItemText sx={{ marginLeft: 0 }}>Undo</ListItemText>
+            </MenuItem>
+            <MenuItem>
+              <ListItemText sx={{ marginLeft: 0 }}>Redo</ListItemText>
+            </MenuItem>
+            <Divider />
+            <MenuItem>
+              <ListItemText sx={{ marginLeft: 0 }}>Cut</ListItemText>
+            </MenuItem>
+            <MenuItem>
+              <ListItemText sx={{ marginLeft: 0 }}>Copy</ListItemText>
+            </MenuItem>
+            <MenuItem>
+              <ListItemText sx={{ marginLeft: 0 }}>Paste</ListItemText>
+            </MenuItem>
+          </Menu>
 
-      {/* Menu View */}
-      <Button
-        onClick={(e) => handleMenuOpen(setAnchorElView, e)}
-        sx={{
-          color: 'white',
-          textTransform: 'none',
-          padding: '0 15px',
-          borderRadius: 0,
-          fontSize: '14px',
-          '&:hover': {
-            bgcolor: '#333',
-          },
-          transition: 'background-color 0.2s ease',
-        }}
-      >
-        View
-      </Button>
-
-      <Menu
-        anchorEl={anchorElView}
-        open={Boolean(anchorElView)}
-        onClose={() => handleMenuClose(setAnchorElView)}
-        MenuListProps={{
-          sx: {
-            bgcolor: '#252526',
-            color: 'white',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
-            padding: '5px 0',
-            '& .MuiMenuItem-root': {
-              fontSize: '14px',
-              padding: '10px 20px',
-              '&:hover': {
-                bgcolor: '#3e3e3e',
+          <Button onClick={(e) => handleMenuOpen(setAnchorElView, e)} sx={{ color: 'white', textTransform: 'none', fontSize: '14px' }}>
+            View
+          </Button>
+          <Menu
+            anchorEl={anchorElView}
+            open={Boolean(anchorElView)}
+            onClose={() => handleMenuClose(setAnchorElView)}
+            MenuListProps={{
+              sx: {
+                bgcolor: '#252526',
+                color: 'white',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+                padding: '5px 0',
+                '& .MuiMenuItem-root': {
+                  fontSize: '14px',
+                  padding: '10px 20px',
+                  '&:hover': {
+                    bgcolor: '#3e3e3e',
+                  },
+                },
               },
-              transition: 'background-color 0.2s ease',
-            },
-          },
-        }}
-      >
-        <MenuItem>
-          <ListItemText inset>Zoom In</ListItemText>
-        </MenuItem>
-        <MenuItem>
-          <ListItemText inset>Zoom Out</ListItemText>
-        </MenuItem>
-        <Divider />
-        <MenuItem>
-          <ListItemText inset>Full Screen</ListItemText>
-        </MenuItem>
-      </Menu>
+            }}
+          >
+            <MenuItem>
+              <ListItemText sx={{ marginLeft: 0 }}>Zoom In</ListItemText>
+            </MenuItem>
+            <MenuItem>
+              <ListItemText sx={{ marginLeft: 0 }}>Zoom Out</ListItemText>
+            </MenuItem>
+            <Divider />
+            <MenuItem>
+              <ListItemText sx={{ marginLeft: 0 }}>Full Screen</ListItemText>
+            </MenuItem>
+          </Menu>
+        </Box>
+
+        {/* Área arrastrable entre menús y botones de manejo de ventana */}
+        <Box
+          onMouseDown={() => appWindow.startDragging()} 
+          sx={{ 
+            flexGrow: 1,
+            cursor: 'grab',  
+            '-webkit-app-region': 'drag',
+          }}
+        />
+
+        {/* Botones de cerrar, minimizar, maximizar a la derecha */}
+        <Box sx={{ display: 'flex', '-webkit-app-region': 'no-drag' }}>
+          <Button onClick={() => appWindow.minimize()} sx={{ color: 'white', textTransform: 'none' }}>_</Button>
+          <Button onClick={() => appWindow.toggleMaximize()} sx={{ color: 'white', textTransform: 'none' }}>[ ]</Button>
+          <Button onClick={() => appWindow.close()} sx={{ color: 'white', textTransform: 'none' }}>X</Button>
+        </Box>
+      </Box>
     </Box>
   );
 }
