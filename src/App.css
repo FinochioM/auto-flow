@@ -52,7 +52,7 @@ body {
 
 .content {
   padding: 16px;
-  margin-top: 50px; /* To avoid content being hidden behind the fixed navbar */
+  margin-top: 50px;
 }
 
 .MuiButton-root {
@@ -62,13 +62,4 @@ body {
 
 .MuiMenuItem-root {
   font-size: 14px;
-}
-
-button {
-  background: none;
-  border: none;
-  color: inherit;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
 }

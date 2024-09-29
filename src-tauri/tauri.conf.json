@@ -59,7 +59,9 @@
         "height": 600,
         "resizable": true,
         "title": "auto-flow",
-        "width": 800
+        "width": 800,
+        "decorations": false,
+        "transparent": false
       }
     ]
   }
