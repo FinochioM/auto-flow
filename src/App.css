@@ -1,8 +1,10 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Aseguramos que ocupe todo el alto */
+  width: 100vw;  /* Aseguramos que ocupe todo el ancho */
 }
 
 body {
@@ -11,6 +13,8 @@ body {
   background-color: #1e1e1e;
   color: white;
   font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .logo {

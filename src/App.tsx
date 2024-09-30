@@ -6,7 +6,6 @@ function App() {
   return (
     <div>
       <Navbar />
-      {/* Aquí renderizamos el Layout que incluye ProjectExplorer y Editor */}
       <Layout />
     </div>
   );

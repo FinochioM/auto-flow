@@ -6,8 +6,10 @@ import ProjectExplorer from './ProjectExplorer';
 import Editor from './Editor';
 
 export default function Layout() {
+  const NAVBAR_HEIGHT = 50;
+
   return (
-    <Box sx={{ display: 'flex', height: '100vh' }}>
+    <Box sx={{ display: 'flex', height: `calc(100vh - ${NAVBAR_HEIGHT}px)`, width: '100vw', overflow: 'hidden', marginTop: `${NAVBAR_HEIGHT}px` }}>
       {/* Panel lateral usando MUI Drawer */}
       <Drawer
         variant="permanent"
@@ -19,10 +21,11 @@ export default function Layout() {
             boxSizing: 'border-box',
             bgcolor: '#2e2e2e',
             color: 'white',
+            marginTop: 5
           },
         }}
       >
-        <Box sx={{ p: 2 }}>
+        <Box sx={{ p: 1.5 }}>
           <Typography variant="h6" noWrap>
             Project Explorer
           </Typography>
@@ -38,28 +41,15 @@ export default function Layout() {
           flexGrow: 1,
           bgcolor: '#1e1e1e',
           color: 'white',
-          padding: 2,
           display: 'flex',
           flexDirection: 'column',
+          overflow: 'hidden',
+          margin: 0,
         }}
       >
-        {/* Panel superior - Editor de código */}
-        <Box sx={{ flexGrow: 1, bgcolor: '#1e1e1e', p: 2 }}>
-          <Typography variant="h6">Editor</Typography>
+        {/* Editor de código */}
+        <Box sx={{ flexGrow: 1, overflow: 'hidden', display: 'flex', padding: 0, margin: 0 }}>
           <Editor />
-        </Box>
-
-        {/* Panel inferior - Consola de mensajes */}
-        <Box
-          sx={{
-            height: '200px',
-            bgcolor: '#3e3e3e',
-            p: 2,
-            borderTop: '1px solid #333',
-          }}
-        >
-          <Typography variant="h6">Console</Typography>
-          {/* Aquí va la salida de la consola */}
         </Box>
       </Box>
     </Box>
