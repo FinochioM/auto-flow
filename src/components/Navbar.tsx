@@ -33,15 +33,22 @@ export default function Navbar() {
       alignItems: 'center',
       borderBottom: '1px solid #333',
       zIndex: 2000,
-      userSelect: 'none', 
+      userSelect: 'none'
     }}>
       
       {/* Contenedor que envuelve los menús y botones */}
       <Box sx={{ display: 'flex', width: '100%' }}>
         
         {/* Menús de File, Edit, View a la izquierda */}
-        <Box sx={{ display: 'flex', '-webkit-app-region': 'no-drag' }}> {/* Área no arrastrable para los menús */}
-          <Button onClick={(e) => handleMenuOpen(setAnchorElFile, e)} sx={{ color: '#C0D4DE', textTransform: 'none', fontSize: '12px' }}>
+        <Box sx={{ display: 'flex', '-webkit-app-region': 'no-drag'}}> {/* Área no arrastrable para los menús */}
+          <Button onClick={(e) => handleMenuOpen(setAnchorElFile, e)} sx={{ 
+            color: '#C0D4DE', 
+            textTransform: 'none', 
+            fontSize: '12px',
+            padding: '2px 4px',
+            height: '30px',
+            lineHeight: '1.2'
+          }}>
             File
           </Button>
           <Menu
@@ -79,7 +86,9 @@ export default function Navbar() {
             </MenuItem>
           </Menu>
 
-          <Button onClick={(e) => handleMenuOpen(setAnchorElEdit, e)} sx={{ color: '#C0D4DE', textTransform: 'none', fontSize: '12px' }}>
+          <Button onClick={(e) => handleMenuOpen(setAnchorElEdit, e)} sx={{ color: '#C0D4DE', textTransform: 'none', fontSize: '12px',            padding: '2px 4px',
+            height: '30px',
+            lineHeight: '1.2' }}>
             Edit
           </Button>
           <Menu
@@ -120,7 +129,9 @@ export default function Navbar() {
             </MenuItem>
           </Menu>
 
-          <Button onClick={(e) => handleMenuOpen(setAnchorElView, e)} sx={{ color: '#C0D4DE', textTransform: 'none', fontSize: '12px' }}>
+          <Button onClick={(e) => handleMenuOpen(setAnchorElView, e)} sx={{ color: '#C0D4DE', textTransform: 'none', fontSize: '12px',             padding: '2px 4px',
+            height: '30px',
+            lineHeight: '1.2' }}>
             View
           </Button>
           <Menu
@@ -168,9 +179,15 @@ export default function Navbar() {
 
         {/* Botones de cerrar, minimizar, maximizar a la derecha */}
         <Box sx={{ display: 'flex', '-webkit-app-region': 'no-drag' }}>
-          <Button onClick={() => appWindow.minimize()} sx={{ color: '#C0D4DE', textTransform: 'none' }}>_</Button>
-          <Button onClick={() => appWindow.toggleMaximize()} sx={{ color: '#C0D4DE', textTransform: 'none' }}>[ ]</Button>
-          <Button onClick={() => appWindow.close()} sx={{ color: '#C0D4DE', textTransform: 'none' }}>X</Button>
+          <Button onClick={() => appWindow.minimize()} sx={{ color: '#C0D4DE', textTransform: 'none',             padding: '2px 4px',
+            height: '30px',
+            lineHeight: '1.2'}}>_</Button>
+          <Button onClick={() => appWindow.toggleMaximize()} sx={{ color: '#C0D4DE', textTransform: 'none',             padding: '2px 4px',
+            height: '30px',
+            lineHeight: '1.2' }}>[ ]</Button>
+          <Button onClick={() => appWindow.close()} sx={{ color: '#C0D4DE', textTransform: 'none',             padding: '2px 4px',
+            height: '30px',
+            lineHeight: '1.2' }}>X</Button>
         </Box>
       </Box>
     </Box>

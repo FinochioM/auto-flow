@@ -74,3 +74,11 @@ button {
 .MuiMenuItem-root {
   font-size: 14px;
 }
+
+.MultiTabs-root {
+  margin: 0;
+}
+
+.MuiBox-root{
+  margin: 0;
+}

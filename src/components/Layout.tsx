@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
-import ProjectExplorer from './ProjectExplorer';
+//import ProjectExplorer from './ProjectExplorer';
 import Editor from './Editor';
 
 export default function Layout() {
@@ -14,23 +14,23 @@ export default function Layout() {
       <Drawer
         variant="permanent"
         sx={{
-          width: 240,
+          width: 200,
           flexShrink: 0,
           '& .MuiDrawer-paper': {
-            width: 240,
+            width: 200,
             boxSizing: 'border-box',
             bgcolor: '#2e2e2e',
             color: 'white',
-            marginTop: 5
+            marginTop: 4.5
           },
         }}
       >
-        <Box sx={{ p: 1.5 }}>
+        <Box sx={{ p: 1}}>
           <Typography variant="h6" noWrap>
             Project Explorer
           </Typography>
           <Divider />
-          <ProjectExplorer />
+          {/*<ProjectExplorer />*/}
         </Box>
       </Drawer>
 
@@ -44,7 +44,7 @@ export default function Layout() {
           display: 'flex',
           flexDirection: 'column',
           overflow: 'hidden',
-          margin: 0,
+          marginTop: 2.8,
         }}
       >
         {/* Editor de código */}
