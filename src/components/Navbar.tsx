@@ -60,32 +60,48 @@ export default function Navbar() {
                 bgcolor: '#252526',
                 color: 'white',
                 boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
-                padding: '5px 0',
+                padding: '1px 0',
                 '& .MuiMenuItem-root': {
-                  fontSize: '14px',
-                  padding: '10px 20px',
+                  fontSize: '12px',
+                  padding: '8px 24px',
+                  minHeight: '36px',
                   '&:hover': {
                     bgcolor: '#3e3e3e',
                   },
                 },
               },
             }}
-          >
+            >
+            {/* Sección 1 */}
             <MenuItem>
-              <ListItemText sx={{ marginLeft: 0 }}>New Project</ListItemText>
+              <ListItemText sx={{ marginLeft: 0, flexGrow: 1 }}>New Project</ListItemText>
+              <ListItemText sx={{ textAlign: 'right', paddingLeft: '16px' }}>Ctrl+N</ListItemText> {/* Shortcut */}
             </MenuItem>
             <MenuItem>
               <ListItemText sx={{ marginLeft: 0 }}>Open Project</ListItemText>
-            </MenuItem>
-            <MenuItem>
-              <ListItemText sx={{ marginLeft: 0 }}>Save Project</ListItemText>
+              <ListItemText sx={{ textAlign: 'right' }}>Ctrl+O</ListItemText>
             </MenuItem>
             <Divider />
+
+            {/* Sección 2 */}
+            <MenuItem>
+              <ListItemText sx={{ marginLeft: 0 }}>Save Project</ListItemText>
+              <ListItemText sx={{ textAlign: 'right' }}>Ctrl+S</ListItemText>
+            </MenuItem>
+            <MenuItem>
+              <ListItemText sx={{ marginLeft: 0 }}>Save As...</ListItemText>
+              <ListItemText sx={{ textAlign: 'right' }}>Ctrl+Shift+S</ListItemText>
+            </MenuItem>
+            <Divider />
+
+            {/* Sección 3 */}
             <MenuItem>
               <ListItemText sx={{ marginLeft: 0 }}>Settings</ListItemText>
             </MenuItem>
+            <MenuItem>
+              <ListItemText sx={{ marginLeft: 0 }}>Exit</ListItemText>
+            </MenuItem>
           </Menu>
-
           <Button onClick={(e) => handleMenuOpen(setAnchorElEdit, e)} sx={{ color: '#C0D4DE', textTransform: 'none', fontSize: '12px',            padding: '2px 4px',
             height: '30px',
             lineHeight: '1.2' }}>

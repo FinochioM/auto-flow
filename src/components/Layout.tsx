@@ -27,7 +27,7 @@ export default function Layout() {
       >
         <Box sx={{ p: 1}}>
           <Typography variant="h6" noWrap>
-            Project Explorer
+            Test
           </Typography>
           <Divider />
           {/*<ProjectExplorer />*/}
